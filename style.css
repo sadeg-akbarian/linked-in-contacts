@@ -19,3 +19,60 @@ body {
   background-color: var(--page-background-color);
   color: var(--page-text-color);
 }
+
+img {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+
+.divPerson {
+  width: 12.5rem;
+  height: 20rem;
+  border: 0.25rem solid grey;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+p:nth-child(2) {
+  font-weight: bold;
+  text-align: center;
+}
+
+p:nth-child(3) {
+  color: rgba(128, 128, 128);
+  text-align: center;
+}
+
+.connectButton {
+  position: relative;
+  bottom: -2.25rem;
+  background-color: transparent;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: blue;
+  border-color: blue;
+  border-radius: 5em;
+  width: 10rem;
+  padding-block: 0.25rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  padding-top: 0.04rem;
+  padding-bottom: 0.16rem;
+  background-color: rgba(0, 0, 0, 0.5);
+}
