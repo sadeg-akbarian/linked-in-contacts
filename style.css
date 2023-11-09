@@ -88,13 +88,6 @@ main {
   align-items: center;
 }
 
-.personsContainer > p {
-  color: red;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-block: 5rem;
-}
-
 .personsContainerAfterLoading {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
