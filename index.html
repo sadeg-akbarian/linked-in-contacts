@@ -13,9 +13,30 @@
     <title>LinkedIn contacts</title>
   </head>
   <body>
-    <header></header>
+    <header>
+      <p class="numberOfPendings" id="numberOfPendings">
+        No pending invitations
+      </p>
+      <button type="button" class="manageButton" id="manageButton">
+        Manage
+      </button>
+    </header>
     <main>
-      <p class="blabla" id="blabla">Genau</p>
+      <div class="peopleInAreaHeading" id="peopleInAreaHeading">
+        <p class="peopleInAreaParagraph" id="peopleInAreaParagraph">
+          People you may know in Greater Aachen Area
+        </p>
+        <button
+          type="button"
+          class="peopleInAreaButton"
+          id="peopleInAreaButton"
+        >
+          See all
+        </button>
+      </div>
+      <div class="personsContainer" id="personsContainer">
+        <p>Please wait a moment for your contact persons to load...</p>
+      </div>
     </main>
     <footer></footer>
     <script src="script.js"></script>

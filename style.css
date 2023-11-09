@@ -16,8 +16,102 @@ html {
 body {
   margin: 0;
   height: 100vh;
-  background-color: var(--page-background-color);
-  color: var(--page-text-color);
+  background-color: rgb(226, 223, 223);
+  padding: 1rem;
+}
+
+button:active {
+  outline: 0.2rem solid red;
+}
+
+/* .......................................................................................... all header styles ............. */
+
+header {
+  width: 55rem;
+  background-color: white;
+  border: 2px solid rgb(185, 185, 185);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.numberOfPendings {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.manageButton {
+  all: unset;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: grey;
+}
+
+/* ..................................................................................... all main styles ................. */
+
+main {
+  width: 55rem;
+  background-color: white;
+  border: 2px solid rgb(185, 185, 185);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.peopleInAreaHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-inline: 0.5rem;
+  margin-block: 0.75rem;
+}
+
+.peopleInAreaParagraph {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+.peopleInAreaButton {
+  all: unset;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.personsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personsContainer > p {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-block: 5rem;
+}
+
+.personsContainerAfterLoading {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* ....................................................... all divPerson styles ............ */
+
+.divPerson {
+  width: 12.5rem;
+  height: 20rem;
+  margin: 0.5rem;
+  border: 0.25rem solid rgb(128, 128, 128);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 img {
@@ -27,15 +121,16 @@ img {
   margin-top: 0.5rem;
 }
 
-.divPerson {
-  width: 12.5rem;
-  height: 20rem;
-  border: 0.25rem solid grey;
-  border-radius: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  padding-top: 0.04rem;
+  padding-bottom: 0.16rem;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 p {
@@ -53,8 +148,8 @@ p:nth-child(3) {
 }
 
 .connectButton {
-  position: relative;
-  bottom: -2.25rem;
+  position: absolute;
+  bottom: 0.65rem;
   background-color: transparent;
   font-size: 1.25rem;
   font-weight: bold;
@@ -63,16 +158,4 @@ p:nth-child(3) {
   border-radius: 5em;
   width: 10rem;
   padding-block: 0.25rem;
-}
-
-.closeButton {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  color: white;
-  font-weight: bold;
-  border-radius: 50%;
-  padding-top: 0.04rem;
-  padding-bottom: 0.16rem;
-  background-color: rgba(0, 0, 0, 0.5);
 }
