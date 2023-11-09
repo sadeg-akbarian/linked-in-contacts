@@ -6,7 +6,7 @@ let pending = 0;
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-function addnewPerson(xxx) {
+function displayNewPerson(xxx) {
   console.log(xxx);
   console.log(xxx[0]);
   console.log(typeof xxx[0]);
@@ -49,7 +49,7 @@ function renderContacts() {
       personsContainer.innerHTML = "";
       personsContainer.classList.add("personsContainerAfterLoading");
     }
-    addnewPerson(contactArray[i]);
+    displayNewPerson(contactArray[i]);
   }
   console.log(contactArray);
 }
