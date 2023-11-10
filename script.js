@@ -17,29 +17,25 @@ if (initialNumberOfPendings !== null) {
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-function displayNewPerson(lastAddedPerson) {
-  console.log(lastAddedPerson);
-  console.log(lastAddedPerson[0]);
-  console.log(typeof lastAddedPerson[0]);
+function displayNewPerson(currentIterationInContactArray) {
+  console.log(currentIterationInContactArray);
+  console.log(currentIterationInContactArray[0]);
+  console.log(typeof currentIterationInContactArray[0]);
   const newDiv = document.createElement("div");
-  const dateString = Date.now().toString(36);
-  console.log(dateString);
-  const randomness = Math.random().toString(36).substring(2);
-  console.log(randomness);
-  console.log(dateString + randomness);
-  newDiv.id = dateString + randomness;
+  console.log(currentIterationInContactArray[0].id);
+  newDiv.id = currentIterationInContactArray[0].id;
   newDiv.classList.add("divPerson");
   const newImage = document.createElement("img");
-  newImage.setAttribute("src", lastAddedPerson[0].picture);
+  newImage.setAttribute("src", currentIterationInContactArray[0].picture);
   newDiv.appendChild(newImage);
   const newName = document.createElement("p");
-  newName.innerText = `${lastAddedPerson[0].name.title}. ${lastAddedPerson[0].name.first} ${lastAddedPerson[0].name.last}`;
+  newName.innerText = `${currentIterationInContactArray[0].name.title}. ${currentIterationInContactArray[0].name.first} ${currentIterationInContactArray[0].name.last}`;
   newDiv.appendChild(newName);
   const newTitle = document.createElement("p");
-  newTitle.innerText = lastAddedPerson[0].title;
+  newTitle.innerText = currentIterationInContactArray[0].title;
   newDiv.appendChild(newTitle);
   const connections = document.createElement("p");
-  connections.innerText = `${lastAddedPerson[0].mutualConnections} mutual Connections`;
+  connections.innerText = `${currentIterationInContactArray[0].mutualConnections} mutual Connections`;
   newDiv.appendChild(connections);
   const newConnectButton = document.createElement("button");
   newConnectButton.innerText = "Connect";
@@ -82,6 +78,13 @@ function fetchNewPerson() {
       }
     })
     .then((newPerson) => {
+      console.log(newPerson);
+      console.log(typeof newPerson);
+      const dateString = Date.now().toString(36);
+      const randomness = Math.random().toString(36).substring(2);
+      console.log(dateString + randomness);
+      newPerson[0].id = dateString + randomness;
+      console.log(newPerson);
       contactArray.push(newPerson);
       console.log(contactArray);
       personNumber++;
@@ -105,22 +108,14 @@ personsContainer.addEventListener("click", function (event) {
     console.log("yeeeeeeeeessssssssssssssss");
     const parentDiv = event.target.parentElement;
     console.log(parentDiv);
-    const fullName = parentDiv.querySelector("p").innerText;
-    console.log(fullName);
-    const fullNameSplitted = fullName.split(" ");
-    console.log(fullNameSplitted);
-    const firstName = fullNameSplitted[1];
-    console.log(firstName);
-    const lastName = fullNameSplitted[2];
-    console.log(lastName);
     console.log(contactArray);
     let indexOfPersonToDelete;
     for (let person of contactArray) {
-      if (
-        person[0].name.first === firstName &&
-        person[0].name.last === lastName
-      ) {
+      console.log(parentDiv.id);
+      console.log(person[0].id);
+      if (parentDiv.id === person[0].id) {
         console.log(contactArray.indexOf(person));
+        console.log(person);
         indexOfPersonToDelete = contactArray.indexOf(person);
       }
     }
