@@ -17,10 +17,10 @@ if (initialNumberOfPendings !== null) {
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-function displayNewPerson(xxx) {
-  console.log(xxx);
-  console.log(xxx[0]);
-  console.log(typeof xxx[0]);
+function displayNewPerson(lastAddedPerson) {
+  console.log(lastAddedPerson);
+  console.log(lastAddedPerson[0]);
+  console.log(typeof lastAddedPerson[0]);
   const newDiv = document.createElement("div");
   const dateString = Date.now().toString(36);
   console.log(dateString);
@@ -30,16 +30,16 @@ function displayNewPerson(xxx) {
   newDiv.id = dateString + randomness;
   newDiv.classList.add("divPerson");
   const newImage = document.createElement("img");
-  newImage.setAttribute("src", xxx[0].picture);
+  newImage.setAttribute("src", lastAddedPerson[0].picture);
   newDiv.appendChild(newImage);
   const newName = document.createElement("p");
-  newName.innerText = `${xxx[0].name.title}. ${xxx[0].name.first} ${xxx[0].name.last}`;
+  newName.innerText = `${lastAddedPerson[0].name.title}. ${lastAddedPerson[0].name.first} ${lastAddedPerson[0].name.last}`;
   newDiv.appendChild(newName);
   const newTitle = document.createElement("p");
-  newTitle.innerText = xxx[0].title;
+  newTitle.innerText = lastAddedPerson[0].title;
   newDiv.appendChild(newTitle);
   const connections = document.createElement("p");
-  connections.innerText = `${xxx[0].mutualConnections} mutual Connections`;
+  connections.innerText = `${lastAddedPerson[0].mutualConnections} mutual Connections`;
   newDiv.appendChild(connections);
   const newConnectButton = document.createElement("button");
   newConnectButton.innerText = "Connect";
@@ -64,8 +64,6 @@ function renderContacts() {
     console.log(pendingDisplayed);
     displayNumberOfPendings.innerText =
       pendingDisplayed + " pendings invitations";
-    personsContainer.innerHTML = "";
-    personsContainer.classList.add("personsContainerAfterLoading");
   }
   displayNewPerson(contactArray[contactArray.length - 1]);
 
@@ -105,7 +103,6 @@ personsContainer.addEventListener("click", function (event) {
     console.log("yeeeeeeeeessssssssssssssss");
     const parentDiv = event.target.parentElement;
     console.log(parentDiv);
-    // personsContainer.removeChild(event.target.parentElement);
     const fullName = parentDiv.querySelector("p").innerText;
     console.log(fullName);
     const fullNameSplitted = fullName.split(" ");

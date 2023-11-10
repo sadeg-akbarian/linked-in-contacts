@@ -83,12 +83,6 @@ main {
 }
 
 .personsContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.personsContainerAfterLoading {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
