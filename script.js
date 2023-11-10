@@ -55,18 +55,20 @@ function displayNewPerson(lastAddedPerson) {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 function renderContacts() {
-  if (contactArray.length === 1) {
-    if (pending === 0) {
-      pendingDisplayed = "No";
-    } else {
-      pendingDisplayed = pending;
+  for (let i = 0; i < contactArray.length; i++) {
+    if (i === 0) {
+      if (pending === 0) {
+        pendingDisplayed = "No";
+      } else {
+        pendingDisplayed = pending;
+      }
+      console.log(pendingDisplayed);
+      displayNumberOfPendings.innerText =
+        pendingDisplayed + " pendings invitations";
+      personsContainer.innerHTML = "";
     }
-    console.log(pendingDisplayed);
-    displayNumberOfPendings.innerText =
-      pendingDisplayed + " pendings invitations";
+    displayNewPerson(contactArray[i]);
   }
-  displayNewPerson(contactArray[contactArray.length - 1]);
-
   console.log(contactArray);
 }
 
