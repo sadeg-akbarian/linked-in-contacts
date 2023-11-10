@@ -10,7 +10,6 @@ let checkedPersonID = "";
 const initialNumberOfPendings = JSON.parse(
   localStorage.getItem("NumberOfPendings")
 );
-console.log(initialNumberOfPendings);
 if (initialNumberOfPendings !== null) {
   pending = initialNumberOfPendings;
 }
@@ -18,11 +17,7 @@ if (initialNumberOfPendings !== null) {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 function displayNewPerson(currentIterationInContactArray) {
-  console.log(currentIterationInContactArray);
-  console.log(currentIterationInContactArray[0]);
-  console.log(typeof currentIterationInContactArray[0]);
   const newDiv = document.createElement("div");
-  console.log(currentIterationInContactArray[0].id);
   newDiv.id = currentIterationInContactArray[0].id;
   newDiv.classList.add("divPerson");
   const newImage = document.createElement("img");
@@ -58,14 +53,12 @@ function renderContacts() {
       } else {
         pendingDisplayed = pending;
       }
-      console.log(pendingDisplayed);
       displayNumberOfPendings.innerText =
         pendingDisplayed + " pendings invitations";
       personsContainer.innerHTML = "";
     }
     displayNewPerson(contactArray[i]);
   }
-  console.log(contactArray);
 }
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -78,18 +71,12 @@ function fetchNewPerson() {
       }
     })
     .then((newPerson) => {
-      console.log(newPerson);
-      console.log(typeof newPerson);
       const dateString = Date.now().toString(36);
       const randomness = Math.random().toString(36).substring(2);
-      console.log(dateString + randomness);
       newPerson[0].id = dateString + randomness;
-      console.log(newPerson);
       newPerson[0].buttonState = "Connect";
       contactArray.push(newPerson);
-      console.log(contactArray);
       personNumber++;
-      console.log(personNumber);
       renderContacts();
     });
 }
@@ -103,33 +90,18 @@ for (let i = 0; i < 8; i++) {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 personsContainer.addEventListener("click", function (event) {
-  console.log(event.target);
-  console.log(event.target.classList[0]);
   if (event.target.classList[0] === "closeButton") {
-    console.log("yeeeeeeeeessssssssssssssss");
     const parentDiv = event.target.parentElement;
-    console.log(parentDiv);
-    console.log(contactArray);
     let indexOfPersonToDelete;
     for (let person of contactArray) {
-      console.log(parentDiv.id);
-      console.log(person[0].id);
       if (parentDiv.id === person[0].id) {
-        console.log(contactArray.indexOf(person));
-        console.log(person);
         indexOfPersonToDelete = contactArray.indexOf(person);
       }
     }
-    console.log(indexOfPersonToDelete);
     contactArray.splice(indexOfPersonToDelete, 1);
-    console.log(contactArray);
     personNumber--;
     fetchNewPerson();
   } else if (event.target.classList[0] === "connectButton") {
-    console.log("Genaaaaaauuuuuuu");
-    console.log(event.target.innerText);
-    console.log(event.target.parentElement.id);
-    console.log(typeof event.target.parentElement.id);
     if (event.target.innerText === "Connect") {
       pending++;
     } else {
@@ -139,10 +111,7 @@ personsContainer.addEventListener("click", function (event) {
     checkedPersonID = event.target.parentElement.id;
     let indexOfPersonClicked;
     for (let person of contactArray) {
-      console.log(person[0].id);
-      console.log(person[0].buttonState);
       if (person[0].id === checkedPersonID) {
-        console.log("Jjjjjjjjjjjjjjjjaaaaaaaaaaaaaaaa");
         if (person[0].buttonState === "Connect") {
           person[0].buttonState = "Pending";
         } else {
@@ -151,8 +120,6 @@ personsContainer.addEventListener("click", function (event) {
         indexOfPersonClicked = contactArray.indexOf(person);
       }
     }
-    console.log(contactArray[indexOfPersonClicked]);
-    console.log(indexOfPersonClicked);
     renderPendingState(indexOfPersonClicked);
   }
 });
@@ -160,26 +127,15 @@ personsContainer.addEventListener("click", function (event) {
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 function renderPendingState(indexOfPersonInContactArray) {
-  console.log(indexOfPersonInContactArray);
-  console.log(pending);
-  console.log(checkedPersonID);
   if (pending === 0) {
     pendingDisplayed = "No";
-    console.log("ääääääääääääääääääääääääääääää");
   } else {
     pendingDisplayed = pending;
-    console.log("ääääääääääääääääääääääääääääää");
   }
   displayNumberOfPendings.innerText =
     pendingDisplayed + " pendings invitations";
   const checkedPerson = document.querySelector("#" + checkedPersonID);
-  console.log(checkedPerson);
   const clickedConnectButton = checkedPerson.querySelector(".connectButton");
-  console.log(clickedConnectButton);
-  console.log(clickedConnectButton.innerText);
-  console.log(contactArray[indexOfPersonInContactArray]);
-  console.log(contactArray[indexOfPersonInContactArray][0]);
-  console.log(contactArray[indexOfPersonInContactArray][0].buttonState);
   clickedConnectButton.innerText =
     contactArray[indexOfPersonInContactArray][0].buttonState;
 }
