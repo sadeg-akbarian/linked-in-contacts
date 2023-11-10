@@ -38,7 +38,7 @@ function displayNewPerson(currentIterationInContactArray) {
   connections.innerText = `${currentIterationInContactArray[0].mutualConnections} mutual Connections`;
   newDiv.appendChild(connections);
   const newConnectButton = document.createElement("button");
-  newConnectButton.innerText = "Connect";
+  newConnectButton.innerText = currentIterationInContactArray[0].buttonState;
   newConnectButton.classList.add("connectButton");
   newDiv.appendChild(newConnectButton);
   const newCloseButton = document.createElement("button");
@@ -85,6 +85,7 @@ function fetchNewPerson() {
       console.log(dateString + randomness);
       newPerson[0].id = dateString + randomness;
       console.log(newPerson);
+      newPerson[0].buttonState = "Connect";
       contactArray.push(newPerson);
       console.log(contactArray);
       personNumber++;
@@ -136,13 +137,30 @@ personsContainer.addEventListener("click", function (event) {
     }
     localStorage.setItem("NumberOfPendings", JSON.stringify(pending));
     checkedPersonID = event.target.parentElement.id;
-    renderPendingState();
+    let indexOfPersonClicked;
+    for (let person of contactArray) {
+      console.log(person[0].id);
+      console.log(person[0].buttonState);
+      if (person[0].id === checkedPersonID) {
+        console.log("Jjjjjjjjjjjjjjjjaaaaaaaaaaaaaaaa");
+        if (person[0].buttonState === "Connect") {
+          person[0].buttonState = "Pending";
+        } else {
+          person[0].buttonState = "Connect";
+        }
+        indexOfPersonClicked = contactArray.indexOf(person);
+      }
+    }
+    console.log(contactArray[indexOfPersonClicked]);
+    console.log(indexOfPersonClicked);
+    renderPendingState(indexOfPersonClicked);
   }
 });
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-function renderPendingState() {
+function renderPendingState(indexOfPersonInContactArray) {
+  console.log(indexOfPersonInContactArray);
   console.log(pending);
   console.log(checkedPersonID);
   if (pending === 0) {
@@ -159,9 +177,9 @@ function renderPendingState() {
   const clickedConnectButton = checkedPerson.querySelector(".connectButton");
   console.log(clickedConnectButton);
   console.log(clickedConnectButton.innerText);
-  if (clickedConnectButton.innerText === "Connect") {
-    clickedConnectButton.innerText = "Pending";
-  } else {
-    clickedConnectButton.innerText = "Connect";
-  }
+  console.log(contactArray[indexOfPersonInContactArray]);
+  console.log(contactArray[indexOfPersonInContactArray][0]);
+  console.log(contactArray[indexOfPersonInContactArray][0].buttonState);
+  clickedConnectButton.innerText =
+    contactArray[indexOfPersonInContactArray][0].buttonState;
 }
